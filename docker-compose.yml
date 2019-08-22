@@ -17,13 +17,13 @@ services:
     depends_on:
       - geth-bootnode
     environment:
-      - address=0x8cc5a1a0802db41db826c2fcb72423744338dcb0 #derived from the private key which is passed in the args
+      - address=0x92ff04eccfff536dbe51eec8b7127d023ff3a6aa #derived from the private key which is passed in the args
       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
       - bootnodeIp=172.25.0.101
     build:
       context: ./miner
       args:
-        privatekey: df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46 # Please don't do something like this in production, okay?
+        privatekey: 5aaee3e8dd3453e718f4c11976797b2b680e9ef0be4ccf785c83919c168f3be6 # Please don't do something like this in production, okay?
         password: pass
     container_name: geth-miner-1
     volumes:
@@ -37,13 +37,13 @@ services:
     depends_on:
       - geth-bootnode
     environment:
-      - address=0x3590aca93338b0721966a8d0c96ebf2c4c87c544 #derived from the private key which is passed in the args
+      - address=0xe1c4fe1d8b64045c217a95f4732a2923a471c766 #derived from the private key which is passed in the args
       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
       - bootnodeIp=172.25.0.101
     build:
       context: ./miner
       args:
-        privatekey: bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35
+        privatekey: 8822884d2fb4c5709b3b6c502f4a95c1c3d4d0dcd56dc0dba7b33ad46f3b2eed
         password: word
     container_name: geth-miner-2
     volumes:
@@ -57,17 +57,18 @@ services:
      depends_on:
        - geth-dev-miner-2
      environment:
-       - address=0x3590aca93338b0721966a8d0c96ebf2c4c87c544 #derived from the private key which is passed in the args
+       - address=0xe1c4fe1d8b64045c217a95f4732a2923a471c766 #derived from the private key which is passed in the args
        - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
      build:
        context: ./node
        args:
-         privatekey: bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35
+         privatekey: 8822884d2fb4c5709b3b6c502f4a95c1c3d4d0dcd56dc0dba7b33ad46f3b2eed
          password: word
      container_name: geth-node
      ports:
        - 8545:8545
+       - 8546:8546
      healthcheck:
        test: wget http://localhost:8545
        interval: 2s
@@ -84,13 +85,13 @@ services:
      depends_on:
        - geth-dev-node
      environment:
-       - address=8cc5a1a0802db41db826c2fcb72423744338dcb0 #derived from the private key which is passed in the args
+       - address=92ff04eccfff536dbe51eec8b7127d023ff3a6aa #derived from the private key which is passed in the args
        - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
      build:
        context: ./swarm
        args:
-         privatekey: df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46
+         privatekey: 5aaee3e8dd3453e718f4c11976797b2b680e9ef0be4ccf785c83919c168f3be6
          password: pass
      container_name: geth-swarm-1
      ports:
@@ -107,13 +108,13 @@ services:
      depends_on:
        - geth-dev-node
      environment:
-       - address=3590aca93338b0721966a8d0c96ebf2c4c87c544 #derived from the private key which is passed in the args
+       - address=e1c4fe1d8b64045c217a95f4732a2923a471c766 #derived from the private key which is passed in the args
        - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
        - bootnodeIp=172.25.0.101
      build:
        context: ./swarm
        args:
-         privatekey: bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35
+         privatekey: 8822884d2fb4c5709b3b6c502f4a95c1c3d4d0dcd56dc0dba7b33ad46f3b2eed
          password: pass
      container_name: geth-swarm-2
      ports:
